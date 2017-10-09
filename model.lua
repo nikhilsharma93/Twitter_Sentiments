@@ -1,3 +1,6 @@
+------------------------------------------------------------------------------
+-- __Author__ = Nikhil Sharma
+------------------------------------------------------------------------------
 require 'rnn'
 require 'nn'
 
@@ -7,7 +10,7 @@ local d = require 'data'
 local vocabLength = d.trainVocabLength
 local numberOfClasses = #d.classes
 local inputDim = 100 -- embeddingSize
-local hiddenDim = 4 -- number of hidden layers
+local hiddenDim = 256 -- number of hidden layers
 
 
 

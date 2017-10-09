@@ -11,7 +11,7 @@ local dl = require 'dataload'
 local minFreq = 10 --Min freq
 local seqLen = 50 --Length of sequence (context)
 local dataDir = 'data/'--'/home/nikhil/Twitterdata/' --Path of data
-local validRatio = 0.9999 --Percentage of training data reserved for validation
+local validRatio = 0.15 --Percentage of training data reserved for validation
 
 classes = {'Negative', 'Positive'}
 
