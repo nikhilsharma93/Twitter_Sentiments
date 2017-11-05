@@ -75,7 +75,7 @@ local function train(trainSet)
    print ('Learning Rate for Epoch '..tostring(epoch)..': '..tostring(optimState['learningRate']))
    print("==> online epoch # " .. epoch .. ' [batchSize = ' .. opt.batchSize .. ']')
 
-   for i, inputs, targets in trainSet:sampleiter(batchSize, trainSet:size()) do
+   for i, inputs, targets in trainSet:sampleiter(opt.batchSize, trainSet:size()) do
 
       -- disp progress
       xlua.progress(i, trainSet:size())
@@ -99,12 +99,15 @@ local function train(trainSet)
          -- Update confusion matrix
          confusion:batchAdd(y, targets)
 
+         -- clip gradients
+         dE_dw:clamp(-2.0, 2.0)
+
          -- return f and df/dX
          return E,dE_dw
       end
 
       -- optimize on current mini-batch
-      optim.sgd(eval_E, w, optimState)
+      optim.adam(eval_E, w, optimState)
    end
 
    confusion:updateValids()

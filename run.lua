@@ -26,7 +26,7 @@ opt = lapp[[
 
 -- nb of threads and fixed seed (for repeatable experiments)
 torch.setnumthreads(opt.threads)
-torch.manualSeed(1)
+--torch.manualSeed(1)
 torch.setdefaulttensortype('torch.FloatTensor')
 
 -- type:
