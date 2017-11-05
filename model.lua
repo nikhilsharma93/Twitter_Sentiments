@@ -9,9 +9,9 @@ local d = require 'data'
 -- parameters
 local vocabLength = d.trainVocabLength
 local numberOfClasses = #d.classes
-local inputDim = 100 -- embeddingSize
-local hiddenDim = 256 -- number of hidden layers
-
+local inputDim = 128 -- embeddingSize
+local hiddenDim = 256 -- number of hidden cells per layer
+local numLayers = 2 -- number of hidden layers
 
 
 -- Model
@@ -24,7 +24,7 @@ local lookup = nn.LookupTableMaskZero(vocabLength, inputDim)
 
 -- LSTM
 stackLstm = nn.Sequential()
-for i=1,hiddenDim do
+for i=1,numLayers do
   local lstm = nn.FastLSTM(inputDim, hiddenDim)
   stackLstm:add(lstm)
   inputDim = hiddenDim
